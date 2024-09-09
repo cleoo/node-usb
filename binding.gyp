@@ -1,7 +1,7 @@
 {
   'variables': {
     'use_udev%': 1,
-    'use_system_libusb%': 'false'
+    'use_system_libusb%': 'true'
   },
   'dependencies': [
     "<!(node -p \"require('node-addon-api').targets\"):node_addon_api_except"
