@@ -93,9 +93,11 @@ export class Interface {
                         callback.call(this, error);
                     }
                 });
-            } catch(e: undefined) {
+            } catch(e) {
                 if (callback) {
-                    callback.call(this, e);
+                    // Vérifiez si l'erreur est de type `LibUSBException`, ou si elle peut être `undefined`
+                    const error = (e instanceof LibUSBException) ? e : undefined;
+                    callback.call(this, error);
                 }
             }
         };
