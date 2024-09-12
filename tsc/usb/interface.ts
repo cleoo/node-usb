@@ -93,7 +93,7 @@ export class Interface {
                         callback.call(this, error);
                     }
                 });
-            } catch(e) {
+            } catch(e: undefined) {
                 if (callback) {
                     callback.call(this, e);
                 }
