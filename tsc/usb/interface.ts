@@ -94,7 +94,9 @@ export class Interface {
                     }
                 });
             } catch(e) {
-                callback.call(this, e);
+                if (callback) {
+                    callback.call(this, e);
+                }
             }
         };
 
