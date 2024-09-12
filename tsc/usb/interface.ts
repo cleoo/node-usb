@@ -83,15 +83,19 @@ export class Interface {
         }
 
         const next = () => {
-            this.device.__releaseInterface(this.id, error => {
-                if (!error) {
-                    this.altSetting = 0;
-                    this.refresh();
-                }
-                if (callback) {
-                    callback.call(this, error);
-                }
-            });
+            try {
+                this.device.__releaseInterface(this.id, error => {
+                    if (!error) {
+                        this.altSetting = 0;
+                        this.refresh();
+                    }
+                    if (callback) {
+                        callback.call(this, error);
+                    }
+                });
+            } catch(e) {
+                callback.call(this, error);
+            }
         };
 
         if (!closeEndpoints || this.endpoints.length === 0) {
