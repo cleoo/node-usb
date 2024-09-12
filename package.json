@@ -55,21 +55,21 @@
   "dependencies": {
     "@types/w3c-web-usb": "^1.0.6",
     "node-addon-api": "^8.0.0",
-    "node-gyp-build": "^4.5.0"
-  },
-  "devDependencies": {
+    "node-gyp-build": "^4.5.0",
     "@types/node": "^20.11.20",
     "@typescript-eslint/eslint-plugin": "^5.45.1",
     "@typescript-eslint/parser": "^5.45.1",
+    "typescript": "^5.4.5",
+    "eslint": "^8.29.0"
+  },
+  "devDependencies": {
     "coffeescript": "^2.7.0",
-    "eslint": "^8.29.0",
     "mocha": "^10.1.0",
     "node-gyp": "^10.0.1",
     "prebuildify": "^6.0.1",
     "prebuildify-ci": "^1.0.5",
     "prebuildify-cross": "^5.0.0",
-    "typedoc": "^0.25.13",
-    "typescript": "^5.4.5"
+    "typedoc": "^0.25.13"
   },
   "binary": {
     "napi_versions": [
