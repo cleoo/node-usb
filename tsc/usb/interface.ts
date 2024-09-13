@@ -95,20 +95,20 @@ export class Interface {
         };
 
         if (!closeEndpoints || this.endpoints.length === 0) {
-            try { next(); } catch {}
+            try {next();} catch {}
         } else {
             let n = this.endpoints.length;
             this.endpoints.forEach(ep => {
                 if (ep.direction === 'in' && (ep as InEndpoint).pollActive) {
                     ep.once('end', () => {
                         if (--n === 0) {
-                            try { next(); } catch {}
+                            try {next();} catch {}
                         }
                     });
                     (ep as InEndpoint).stopPoll();
                 } else {
                     if (--n === 0) {
-                        try { next(); } catch {}
+                        try {next();} catch {}
                     }
                 }
             });
