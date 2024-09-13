@@ -83,40 +83,32 @@ export class Interface {
         }
 
         const next = () => {
-            try {
-                this.device.__releaseInterface(this.id, error => {
-                    if (!error) {
-                        this.altSetting = 0;
-                        this.refresh();
-                    }
-                    if (callback) {
-                        callback.call(this, error);
-                    }
-                });
-            } catch(e) {
+            this.device.__releaseInterface(this.id, error => {
+                if (!error) {
+                    this.altSetting = 0;
+                    this.refresh();
+                }
                 if (callback) {
-                    // Vérifiez si l'erreur est de type `LibUSBException`, ou si elle peut être `undefined`
-                    const error = (e instanceof LibUSBException) ? e : undefined;
                     callback.call(this, error);
                 }
-            }
+            });
         };
 
         if (!closeEndpoints || this.endpoints.length === 0) {
-            next();
+            try { next(); } catch {}
         } else {
             let n = this.endpoints.length;
             this.endpoints.forEach(ep => {
                 if (ep.direction === 'in' && (ep as InEndpoint).pollActive) {
                     ep.once('end', () => {
                         if (--n === 0) {
-                            next();
+                            try { next(); } catch {}
                         }
                     });
                     (ep as InEndpoint).stopPoll();
                 } else {
                     if (--n === 0) {
-                        next();
+                        try { next(); } catch {}
                     }
                 }
             });
