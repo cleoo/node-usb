@@ -246,7 +246,8 @@ struct Req: Napi::AsyncWorker {
             Callback().Call(device->Value(), { error });
         }
         catch (const Napi::Error& e) {
-            THROW_ERROR(e.what());
+            e.ThrowAsJavaScriptException();
+            // THROW_ERROR(e.what());
         }
     }
 };
